@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="first">123</div>
+    <p class="first">hhh</p>
+    <span class="first">xixiixi</span>
+    <div name="last">456</div>
+    <div id="four"> 4444</div>
+    <script>
+        var last = document.getElementsByName('last')
+        console.log(last);
+        var first = document.getElementsByClassName('first')
+        console.log(first);
+        var four = document.querySelector('#four')
+        console.log(four);
+        // 只能获取一个元素 返回第一个匹配到的元素
+        
+        var f1 = document.querySelector('.first')
+        console.log(f1);
+        // 全部获取 类型nodelist 返回所有匹配到的元素
+        // document.querySelectorAll返回的是静态NodeList
+        var f2 = document.querySelectorAll('.first')
+        console.log(f2);
+    </script>
+</body>
+</html>

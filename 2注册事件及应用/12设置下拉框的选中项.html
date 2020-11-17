@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="设置" id="btnSet"> 
+    <select  id="selCities">
+        <option  selected= 'false' value="1">北京</option>
+        <option value="2">上海</option>
+        <option value="3">深圳</option>
+        <option value="4">广州</option>
+        <option  value="5">武汉</option>
+    </select>
+    <script>
+        // 获取按钮 给按钮注册事件
+        var btnSet = document.getElementById('btnSet')
+        // console.log(typeof option);
+        btnSet.onclick = function() {
+            // 2 获取下拉框中所有的option
+            var selCities = document.getElementById('selCities')
+            var options = selCities.getElementsByTagName('option')
+            console.log(options.type);
+            // 3 随机生成索引
+            var randomIndedx = parseInt(Math.random()*options.length)
+            // 4 根据索引获取option 并让option选中
+            var option = options[randomIndedx];
+            option.selected = true;
+
+
+        }
+    </script>
+</body>
+</html>

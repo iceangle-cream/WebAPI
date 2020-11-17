@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <b>黑马</b>
+        我是一个div
+        <span>这是一个span</span>
+    </div>
+    <script>
+        var box = document.getElementById('box')
+        console.log(box);
+        console.dir(box);
+        // innerHTML和innerText获取开始标签和结束标签之间的内容  
+        // innerHTML 获取内容时，如果内容中有标签，会把标签页获取到
+        console.log(box.innerHTML);
+        // innerText获取内容时，会把标签、前后换行和空白都过滤到
+        console.log(box.innerText);
+        var text = box.getElementsByTagName('span')
+
+        // 设置标签中的内容
+        box.innerHTML = ""; // 清空内容
+        box.innerHTML = '<b>黑马</b> 程序员';
+        box.innerText = '<b>黑马</b> 程序员'; // 会把标签显示出来
+    </script>
+</body>
+</html>

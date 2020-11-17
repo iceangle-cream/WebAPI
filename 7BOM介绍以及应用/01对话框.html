@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">alert</button>
+    <button id="btn2">prompt</button>
+    <button id="btn3">confirm</button>
+    <button id="btn4">跳转</button>
+    <script>
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        var btn3 = document.getElementById('btn3');
+        var btn4 = document.getElementById('btn4');
+        btn1.onclick = function() {
+            alert('hello world')
+        }
+        btn2.onclick = function() {
+            var userName = prompt('请输入姓名','张三');
+            console.log(userName);
+        }
+        btn3.onclick = function() {
+            var isSure = confirm('是否要删除数据？')
+            console.log(isSure );
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="firstGirl">firstGirl</button>
+    <button id='secondGirl'>secondGirl</button>
+    <br>
+    <img src="img/1.png" alt="" width="185" title="firstGirl">
+    <script>
+        var firstGirl = document.getElementById('firstGirl');
+        var secondGirl = document.getElementById('secondGirl');
+        var img = document.querySelector('img')
+        // var flag = 1;
+        // 注册事件
+        firstGirl.onclick = function() {
+            // images = document.getElementById('images')
+                img.src = 'img/1.png'
+                img.title="firstGirl"
+        }
+        secondGirl.onclick = function() {
+            // images = document.getElementById('images')
+                img.src = 'img/2.png'
+                img.title="secondGirl"
+        }
+    </script>
+</body>
+</html>

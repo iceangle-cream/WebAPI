@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">123</div>
+    <script>
+        // 如何知道浏览器是否支持元素某个属性
+        var box = document.getElementById('box')
+        console.log(box.innerText);
+        // 属性不存在的时候，返回的是undefined
+        // console.log(typeof box.a);
+        // 属性不存在的时候，返回的是该属性类型
+        // console.log(typeof box.id);
+        console.log(getInnerText(box));
+          // 让浏览器处理inner-Text的兼容性
+          function getInnerText(element) {
+              // 判断当前浏览器是否支持innerText属性
+              if (typeof element.innerText == 'string') {
+                  return element.innerText
+              } else {
+                  return element.textContent
+              }
+          }
+          var box = document.getElementById(box)
+          console.log(getInnerText(box));
+
+    </script>
+</body>
+</html>

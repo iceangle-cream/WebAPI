@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>123</div>
+    <ul>
+        <li>abc</li>
+        <li>abc</li>
+        <li>abc</li>
+    </ul>
+    <a href="https://www.baidu.com">百度</a>
+    <script>
+        // 常见事件对象的属性和方法
+        // e.target 返回的触发事件的对象 this返回的是注册（绑定）事件的对象
+        var div = document.querySelector('div');
+        div.addEventListener('click',function(e){
+            console.log(e.target);
+        })
+        var ul = document.querySelector('ul');
+        ul.addEventListener('click', function(e) {
+            // 给ul绑定了事件 this返回的是ul
+            console.log(this);
+            // e.target指向点击的对象
+            console.log(e.target);
+        })
+        // 2 阻止默认行为（事件） 让链接不跳转 或者让提交按钮不提交
+        var a = document.querySelector('a');
+        a.addEventListener('click', function(e) {
+            e.preventDefault(); // dom标准写法
+        })
+        // 3 传统的注册方式
+        a.onclick = function(e) {
+            // 普通浏览器e.preventDefault();
+            e.preventDefault();
+            // 低版本浏览器
+            e.returnValue;
+            // 利用 return false 也能阻止没有兼容性问题 但其后面的代码不执行只限于传统的注册方式
+        }
+    </script>
+</body>
+</html>

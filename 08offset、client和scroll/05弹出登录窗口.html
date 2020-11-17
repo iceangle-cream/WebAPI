@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .login-header {
+            text-align: center;
+            margin: 50px auto;
+        }
+        a {
+            margin: auto auto;
+            text-decoration: none;
+            color: black;
+        }
+        .login {
+            position: absolute;
+            width: 512px;
+            height: 284px;
+            z-index: 9999;
+            margin: 100px auto;
+            background-color:white;
+            /* 定位的盒子怎么在屏幕显示居中 */
+            left: 50%;
+            margin-left: -256px;
+            margin-top: 142px;
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .2);
+            display: none;
+        }
+        .login-title {
+            position: relative;
+            width: 100%;
+            margin-top: 10px;
+            text-align: center;
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            cursor: move;
+            border-bottom: 1px solid #cccccc;
+        }
+        span {
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 40px;
+            height: 40px;
+            background-color: #fff;
+            border: 1px solid #ebebeb;
+            border-radius: 50%;
+        }
+        /* 登录表单 */
+        .login-input {
+            margin-top: 20px;
+            margin-bottom: 30px;
+        }
+        .login-input label {
+            float: left;
+            height: 35px;
+            line-height: 35px;
+            width: 90px;
+            padding-left: 10px;
+            text-align: right;
+            font-size: 14px;
+        }
+        .login-input input {
+            height: 35px;
+            line-height: 35px;
+            width: 350px;
+            text-indent: 5px;
+        }
+        /* 登录框登录按钮 */
+        .login-btn {
+            width: 260px;
+            height: 40px;
+            line-height: 40px;
+            text-align: center;
+            border: 1px solid gray;
+            background-color: white;
+            margin-left: 120px;
+        }
+        /* 遮盖层 */
+        .login-bg {
+            background-color: #000000;
+            width: 100%;
+            height: 100%;
+            top: 0px;
+            position: fixed;
+            opacity: 0.3;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-header">
+        <a id="adminBtn" href="javescript:void(0);" id="link">点击，弹出登录框</a>
+    </div>
+    <div class="login">
+         <div class="login-title">
+             登录会员
+             <span>
+                 <a  href="javescript:void(0);" id="closeBtn">关闭</a>
+             </span>
+         </div>
+         <div class="login-input-content">
+             <div class="login-input">
+                 <label for="">用户名：</label>
+                 <input type="text" value="请输入用户名" class="userName">
+             </div>
+             <div class="login-input">
+                <label for="">登录密码：</label>
+                <input type="text" value="请输入登录密码" class="passWord">
+            </div>
+             <div class="login-btn">
+                <a href="javescript:void(0);" id="link">登录会员</a>
+             </div>
+         </div>
+    </div>
+        <!-- 遮盖层 -->
+    <div class="login-bg"></div>
+    <script>
+        var adminBtn = document.querySelector('#adminBtn')
+        // console.log(login_header);
+        var login = document.querySelector('.login')
+        var login_bg = document.querySelector('.login-bg')
+        // 1 点击登录按钮弹出登录框 遮盖层
+        adminBtn.onclick = function() {
+            login.style.display = 'block';
+            login_bg.style.display = 'block';
+            // 解决错误：Failed to launch 'javescript:void(0);' 
+            // because the scheme does not have a registered handler.
+            // 取消默认行为的执行
+            return false
+        }
+        // 2 点击关闭 隐藏登录窗口和遮盖层
+        var closeBtn = document.querySelector('#closeBtn')
+        closeBtn.onclick = function() {
+            login.style.display = 'none';
+            login_bg.style.display = 'none';
+            return false
+        }
+        // 3 鼠标拖曳功能
+        var login_title = document.querySelector('.login-title')
+        login_title.onmousedown = function(e) {
+            // 鼠标按下时，求鼠标在盒子中的位置
+            // 鼠标在盒子中的位置 = 鼠标在页面的位置 - 盒子的位置
+            var x = e.pageX - login.offsetLeft;
+            var y  = e.pageY - login.offsetTop;
+
+            // 鼠标在文档中移动
+            document.onmousemove = function(e) {
+                // 当鼠标在页面移动时，求盒子的坐标
+                // 盒子的坐标 = 鼠标在页面中的位置 - 鼠标在盒子中的位置
+                var loginX = e.pageX - x;
+                var loginY = e.pageY - y;
+                login.style.left =  loginX + 256 + 'px';
+                // console.log(box.style.left);
+                login.style.top = loginY - 142 + 'px';
+                // console.log(box.style.top);
+            }
+        }
+        // 当鼠标弹起时， 移除鼠标移动事件
+        login_title.onmouseup = function(){
+            document.onmousemove = null;
+        }
+    </script>
+</body>
+</html>

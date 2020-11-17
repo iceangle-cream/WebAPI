@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            position: absolute;
+            top: 2px;
+        }
+    </style>
+</head>
+<body>
+    <img src="image/angel.gif" alt="">
+    <script>
+        var img = document.querySelector('img')
+        document.addEventListener('mousemove', function(e) {
+            // mousemove移动鼠标事件
+            // 核心原理：每次移动鼠标会得到新的鼠标坐标 把鼠标坐标作为图片的top和left
+            console.log(e.pageY);
+            console.log(e.pageX);
+            var x = e.pageX
+            var y = e.pageY
+            // 千万要给top和left添加单位
+            img.style.top = y + 'px';
+            img.style.left = x + 'px';
+        })
+    </script>
+</body>
+</html>

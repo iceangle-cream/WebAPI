@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=" initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>我是div</div>
+    <span>我是span</span>
+    <script>
+        var div = document.querySelector('div');
+        // nextSibling下一个兄弟节点 包含文本节点和元素节点
+        console.log(div.nextSibling);
+        // previousSibling上一个兄弟节点 包含文本节点和元素节点
+        console.log(div.previousSibling);
+        // nextElementSibling下一个兄弟元素节点
+        console.log(div.nextElementSibling);
+        // previousElementSibling上一个兄弟元素节点
+        console.log(div.previousElementSibling);
+    </script>
+</body>
+</html>

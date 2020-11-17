@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 250px;
+            margin: 100px auto;
+        }
+        .box  li {
+            float: left;
+            width: 24px;
+            height: 24px;
+            background-color: pink;
+            margin: 15px;
+            background: url(images/sprite.png) no-repeat;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script>
+        var box = document.querySelector('.box ')
+        var lists = box.getElementsByTagName('li')
+        // var lists =document.querySelectorAll('li')
+        for (i = 0; i < lists.length; i++){
+            list = lists[i];
+            var index = i*44;
+            list.style.backgroundPosition = '0 -'+ index +'px';
+        }
+    </script>
+</body>
+</html>

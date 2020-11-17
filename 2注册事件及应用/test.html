@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .bg {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="请输入您的用户名" id="userName">
+    <script>
+        var userName = document.getElementById('userName');
+        userName.onfocus = function() {
+            if(this.value === '请输入您的用户名'){
+                this.value = '';
+                this.className = 'bg';
+                console.log(this.className);
+            }
+        }
+    </script>
+</body>
+</html>

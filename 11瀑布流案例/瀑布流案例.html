@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .itemBox {
+            width: 1050px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .item {
+            border: 1px solid #cccccc;
+            padding: 4px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="itemBox">
+        <div class="item">
+            <img src="images/P_000.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_001.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_002.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_003.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_004.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_005.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_006.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_007.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_008.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_009.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_010.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_011.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_012.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_013.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_014.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_015.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_016.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_017.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_018.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_019.jpg" alt="">
+        </div>
+    </div>
+</body>
+<script>
+    // 代码执行到这里的时候上面的img标签是被渲染了，但是图片不一定加载完成了
+    //  window.onload代表页面加载完成，这个时候就可以取图片高度了
+    window.onload = function() {
+            // 思路分析： 
+        // 1 获取大盒子items的宽度
+        // document.querySelectorAll得到的是静态列表，不会对domj结构进行动态查询，再次重新获取。
+        var itemBox = document.getElementsByClassName('itemBox')[0];
+        var items = document.getElementsByClassName('item');
+        // var itemBox = document.querySelector('.itemBox');
+        var itemBoxW = itemBox.offsetWidth;
+        console.log(itemBoxW);
+        // 2 获取小图片item的宽度
+        // var items = document.querySelectorAll('.item')
+        var itemW = items[0].offsetWidth;
+        // 3 求出列数 、间距
+        var column = parseInt (itemBoxW  / itemW);
+        var distance = (itemBoxW - itemW * column) / (column - 1) ;
+        // 4 实现瀑布流布局的方法
+        // 定义一个存储每列高度的容器
+        var arr = [];
+        waterFull()
+        // console.log(arr);
+        // 5 滚动页面时，加载数据
+        window.onscroll = function () {
+            if (window.pageYOffset + window.innerHeight > getMin(arr).minV) {
+                var json = [
+                    { "src": "./images/P_000.jpg" },
+                    { "src": "./images/P_001.jpg" },
+                    { "src": "./images/P_002.jpg" },
+                    { "src": "./images/P_003.jpg" },
+                    { "src": "./images/P_004.jpg" },
+                    { "src": "./images/P_005.jpg" },
+                    { "src": "./images/P_006.jpg" },
+                    { "src": "./images/P_007.jpg" },
+                    { "src": "./images/P_008.jpg" },
+                    { "src": "./images/P_009.jpg" },
+                    { "src": "./images/P_010.jpg" }
+                ];
+                for (var i = 0; i < json.length; i++) {
+                    var div = document.createElement('div');
+                    div.className = 'item';
+                    var img = document.createElement('img');
+                    img.src = json[i].src;
+                    div.appendChild(img);
+                    itemBox.appendChild(div);
+                }
+                waterFull();
+            }
+        }
+        
+        // 实现瀑布流布局的方法
+        function waterFull() {
+            for (var i = 0;i < items.length; i++) {
+                if (i < column) {
+                    items[i].style.left = itemW * i  + distance * i + 'px';
+                    arr[i] = items[i].offsetHeight;
+                }else {
+                    var minV = getMin(arr).minV;
+                    var minI = getMin(arr).minI;
+                    items[i].style.left = (itemW + distance) * minI + 'px';
+                    items[i].style.top = minV + distance + 'px';
+                    arr[minI] = minV + distance + items[i].offsetHeight;
+                }
+            }
+        }
+        // 获取数组的最小值以及索引
+        function getMin(arr) {
+            var obj = {};
+            obj.minV = arr[0];
+            obj.minI = 0;
+            for (var i = 1; i < arr.length; i++){
+                if (obj.minV > arr[i]){
+                    obj.minV = arr[i];
+                    obj.minI = i;
+                }
+            }
+            return obj;
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        div {
+            width: 100px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            margin: 100px auto;
+            background-color: #cccccc;
+            color: red;
+            display: none;
+        }
+    </style>
+    <script>
+        onload = function() {
+            // 当前页面的所有元素创建成功，等待外部文件下载完毕才会执行
+            var btn = document.getElementById('btn');
+            btn.onclick = function() {
+                // 删除操作
+                // 显示删除成功的tip
+                var tip = document.getElementById('tip')
+                tip.style.display = 'block'
+                // 隔3秒之后让tip隐藏
+                setTimeout(function(){
+                    tip.style.display = 'none'
+                }, 3000)
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="btn">删除</button>
+    <div id="tip">删除成功</div>
+    <script>
+
+    </script>
+</body>
+</html>

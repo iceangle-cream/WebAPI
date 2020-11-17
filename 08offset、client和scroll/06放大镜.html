@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 260px;
+            height: 426px;
+            margin: 100px;
+            border: 1px solid #cccccc;
+            position: relative;
+        }
+        .big {
+            width: 500px;
+            height: 400px;
+            position: absolute;
+            top: 0;
+            left: 270px;
+            border: 1px solid #cccccc;
+            overflow: hidden;
+            display: none;
+        }
+        .big img {
+            position: absolute;
+        }
+        .mask {
+            width: 120px;
+            height: 120px;
+            background:rgba(255, 255, 0, 0.4);
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        .small {
+            position: relative;
+            cursor: move;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+     <div class="box">
+         <div class="small">
+             <img src="img/t018484b25771209d15.jpg" alt="" width="252px">
+             <div class="mask"></div>
+         </div>
+         <div class="big">
+             <img src="img/t018484b25771209d15.jpg" alt="" width="500px">
+         </div>
+     </div>
+     <script>
+         // 1 鼠标经过图片时 显示遮盖层 当鼠标离开时 隐藏遮盖层bigbox
+         var box = document.querySelector('.box');
+         var small = document.querySelector('.small');
+         var small_img = small.querySelector('img');
+         var mask = document.querySelector('.mask');
+         var big = box.children[1];
+        //  console.log(big);
+         var big_img = big.children[0];
+         console.log(big_img);
+         box.onmouseover = function() {
+            mask.style.display = 'block';
+            big.style.display = 'block'
+         }
+         box.onmouseout = function() {
+            mask.style.display = 'none';
+            big.style.display = 'none'
+        }
+        //  console.log(small_img);
+         // 2 遮盖层和鼠标一起移动
+        box.onmousemove = function(e) {
+            // 兼容性
+            e = e || window.event
+            // 获取鼠标在盒子中的位置就是mask中心的坐标
+            var maskX = e.pageX - box.offsetLeft ;
+            // console.log(e.pageY);
+            // console.log(mask.offsetWidth);
+            // console.log(mask.offsetHeight);
+            var maskY = e.pageY - box.offsetTop ;
+            maskX = maskX - mask.offsetWidth / 2;
+            console.log(maskX);
+            maskY = maskY - mask.offsetHeight / 2;
+            console.log(maskY);
+            // 把maskX限制在box中
+            maskX = maskX < 0 ? 0 : maskX;
+            maskY = maskY < 0 ? 0 : maskY;
+            maskX = maskX > box.offsetWidth - mask.offsetWidth ? box.offsetWidth - mask.offsetWidth : maskX;
+            maskY = maskY > box.offsetHeight - mask.offsetHeight ? box.offsetHeight - mask.offsetHeight : maskY;
+            // console.log(maskX);
+            // console.log(maskY);
+            mask.style.left = maskX + 'px';
+            // console.log(mask.style.left);
+            mask.style.top = maskY + 'px';
+            // console.log(mask.style.top);
+            // 3 当mask移动时 让大图片移动
+            // 求大图片移动的距离
+            // mask移动的距离 / mask最大移动距离 = 大图片移动的距离 / 大图片最大移动距离；
+            var maskMaxX = box.offsetWidth - mask.offsetWidth;
+            var maskMaxY = box.offsetHeight - mask.offsetHeight;
+            // 大图片最大移动距离
+            var bigImgMaxX = big_img.offsetWidth - big.offsetWidth;
+            var bigImgMaxY = big_img.offsetHeight - big.offsetHeight;
+            var bigImgX = maskX * bigImgMaxX / maskMaxX;
+            var bigImgY = maskY * bigImgMaxY / maskMaxY;
+            big_img.style.left = -bigImgX + 'PX';
+            big_img.style.top = -bigImgY + 'PX';
+            
+        }
+        
+
+
+     </script>
+</body>
+</html>

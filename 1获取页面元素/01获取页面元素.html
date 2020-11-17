@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+        var divs = document.getElementsByTagName('div')
+        console.log(divs.length);
+    </script>
+</head>
+<body>
+    <div>hello world!</div>
+    <div>heima</div>
+    <span>111</span>
+    <div id="main">ouye</div>
+    <div name="yeah">yeah!</div>
+    <P class="p">TEST</P>
+    <script>
+        // HTMLDivElement---div
+        // p--- HTMLParagraphElement
+        // document 文档对象
+        // get 获取 Element 元素 By 根据Id 标示
+        // id是唯一的
+        var main = document.getElementById("main")
+        var P = document.getElementById("p")
+        console.log(main);
+        // 打印对象
+        console.dir(main);
+        console.log(P);
+        // console.dir(P);
+        // 返回的是NodeList对象
+        var divs = document.getElementsByTagName('div')
+        console.log(divs);
+        for (var i = 0; i < divs.length; i++){
+            console.log(divs[i]);
+            // divs中每一个元素是什么类型？
+            console.dir(divs[i]);
+        }
+        // 注意：document.getElementsByTagName()获取的是动态集合。
+    </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            border-spacing: 0;
+            border: 1px solid #c0c0c0;
+            width: 300px;
+        }
+        th,
+        td {
+            border: 1px solid #d0d0d0;
+            color: #404060;
+            padding: 10px;
+        }
+        th {
+            background-color: #09c;
+            font: bold 16px '微软雅黑';
+            color: #fff;
+        }
+        td {
+            font: 14px '微软雅黑';
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="j_cbAll">
+                    </th>
+                    <th>商品</th>
+                    <th>价格</th>
+                </tr>
+            </thead>
+            <tbody id="j_tb">
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>ipad Pro</td>
+                    <td>5000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>iPhone8</td>
+                    <td>8000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>ipad Air</td>
+                    <td>2000</td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="checkbox">
+                    </td>
+                    <td>Apple Watch</td>
+                    <td>2000</td>
+                </tr>
+            </tbody>
+        </table>
+        <input type="button" value="反选" id="btn">
+    </div>
+    <script>
+        // 1 全选
+        var j_cbAll = document.getElementById('j_cbAll')
+        var j_tb = document.getElementById('j_tb')
+        var inputs = j_tb.getElementsByTagName('input')
+        // 1.1 获取父checkbox, 注册点击事件
+        j_cbAll.onclick = function() {
+            // var j_tb = document.getElementById('j_tb')
+            // var inputs = j_tb.getElementsByTagName('input')
+            for (var i = 0; i < inputs.length; i++){
+                var input = inputs[i];
+                if (input.type == 'checkbox') {
+                     // 1.2 找到所有的子的checkbox 让这些checkbox的状态与父checkbox状态保持一致
+                    input.checked = this.checked;
+                }
+            }
+        }
+        // 2 当点击子checkbox 若子的都选中 父的也选中
+        // 有一个子的没被选中 父的也不选中
+        // var inputs = j_tb.getElementsByTagName('input')
+        for (var i = 0; i < inputs.length; i++){
+                var input = inputs[i];
+                // 判断是否是checkbox
+                if (input.type != 'checkbox'){
+                    // 结束当前循环 进行下一次循环
+                    continue;
+                }
+                // 给子的注册事件
+                input.onclick = function() {
+                    checkAllCheckBox()
+                }
+            }
+            // 判断父的checkedbox的状态 封装成函数
+        function checkAllCheckBox() {
+            // 假设所有的子的被选中
+            var isAllChecked = true;
+                // 判断是否所有的子的checkbox都被选中
+                for (var i = 0; i < inputs.length; i++){
+                    var input = inputs[i];
+                    if (input.type != 'checkbox'){
+                        // 结束当前循环 进行下一次循环
+                        continue;
+                    }
+                    // 判断当前所有的checkbox是否被选中
+                    if (!input.checked) {
+                        isAllChecked = false;
+                    }                       
+                }
+                    // 设置父的状态
+                    j_cbAll.checked = isAllChecked;
+        }
+        // 3 反选
+        // 3.1 给反选按钮注册事件
+        // 3.2 找到所有的checkbox 让其反选
+        var btn = document.getElementById('btn')
+        btn.onclick = function() {
+        //     // var inputs = j_tb.getElementsByTagName('input')
+            // 3.2 找到所有的checkbox 让其反选
+            for (var i = 0; i < inputs.length; i++){
+                var input = inputs[i];
+                if (input.type != 'checkbox'){
+        //                     // 结束当前循环 进行下一次循环
+                    continue;
+                }
+            //让子checkbox反选
+             input.checked = !input.checked
+            // 父checkbox
+            checkAllCheckBox()
+            }
+        }
+    </script>
+</body>
+</html>

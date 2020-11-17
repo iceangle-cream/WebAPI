@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div>文本</div>
+    <script>
+        // 1 使用element.style 获得修改元素样式
+        var test = document.querySelector('div');
+        test.onclick = function() {
+            this.style.backgroundColor = 'purple';
+            this.style.color = '#ffff    '
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            /* background-color: pink; */
+            box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .2);
+        }
+        .hd {
+            height: 25px;
+            line-height: 25px;
+            background-color: skyblue;
+            color: white;
+            /* 鼠标样式  十字架*/
+            cursor: move;
+        }
+        .close {
+            float: right;
+            font-size: 12px;
+            /* 鼠标样式  小手*/
+            cursor: pointer;
+        }
+        .bd {
+            background-color: #cccccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="hd">注册信息(可以拖曳)
+            <div class="close">【关闭】</div>
+        </div>
+        <div class="bd"></div>
+    </div>
+    <script>
+        var box = document.querySelector('.box')
+        var hd = document.querySelector('.hd')
+        var close = document.querySelector('.close')
+        hd.onmousedown = function (e) {
+            // 鼠标按下时，求鼠标在盒子中的位置
+            // 鼠标在盒子中的位置 = 鼠标在页面的位置 - 盒子的位置
+            var x = e.pageX - box.offsetLeft;
+            var y  = e.pageY - box.offsetTop;
+
+            // 鼠标在文档中移动
+            document.onmousemove = function(e) {
+                // 当鼠标在页面移动时，求盒子的坐标
+                // 盒子的坐标 = 鼠标在页面中的位置 - 鼠标在盒子中的位置
+                var boxX = e.pageX - x;
+                var boxY = e.pageY - y;
+                box.style.left =  boxX + 'px';
+                // console.log(box.style.left);
+                box.style.top = boxY + 'px';
+                // console.log(box.style.top);
+            }
+        }
+        // 当鼠标弹起时， 移除鼠标移动事件
+        hd.onmouseup = function(){
+            document.onmousemove = null;
+        }
+        // 点击关闭按钮 隐藏盒子
+        close.onclick = function() {
+            box.style.display = 'none'
+        }
+    </script>
+</body>
+</html>

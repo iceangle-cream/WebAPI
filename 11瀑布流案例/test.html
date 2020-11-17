@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .itemBox {
+            width: 1050px;
+            margin: 0 auto;
+            position: relative;
+        }
+        .item {
+            /* width: 192px; */
+            border: 1px solid #cccccc;
+            padding: 4px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="itemBox">
+        <div class="item">
+            <img src="images/P_000.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_001.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_002.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_003.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_004.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_005.jpg" alt="">
+        </div>
+        <div class="item">
+            <img src="images/P_006.jpg" alt="">
+        </div>
+    </div>
+</body>
+<script>
+    window.onload = function() {
+        var items = document.querySelectorAll('.item');
+        console.log(items[0].offsetWidth);
+    }
+    
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        .box {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            overflow: hidden;
+            margin: 50px;
+        }
+        .child {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 50px;
+            border: 10px solid yellow;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="child">
+
+        </div>
+    </div>
+    <script>
+        // 3组和位置大小相关的属性
+        // offset client scroll
+        var box = document.querySelector('.box');
+        var child = document.querySelector('.child');
+        // console.log(child.offsetParent);
+        // 获取box坐标
+        console.log(box.offsetLeft);
+        console.log(box.offsetTop);
+        // 距离offsetParent的横向距离
+        // console.log(child.offsetLeft);
+        // console.log(child.offsetTop);
+        // 获取box的大小
+        console.log(box.offsetWidth);
+        console.log(box.offsetHeight);
+        //  获取box的大小包括边框和内边距
+        console.log(child.offsetWidth);
+        console.log(child.offsetHeight);
+    </script>
+</body>
+</html>

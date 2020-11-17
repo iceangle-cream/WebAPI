@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 50px;
+            border: 30px solid yellow;
+            padding: 10px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        yiyiyiyiyyyiyyyiyiiyiy
+    </div>
+    <script>
+        // scroll
+        var box = document.querySelector('.box');
+        // box滚动出去的距离
+        console.log(box.scrollLeft);
+        console.log(box.scrollTop);
+          // 内容大小 + padding
+        // 包括未显示文本那部分的宽度和高度 包括padding 不包括显示条
+        console.log(box.scrollWidth);
+        console.log(box.scrollHeight);
+        console.log(box.clientWidth);
+        console.log(box.clientHeight);
+    </script>
+</body>
+</html>

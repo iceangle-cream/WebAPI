@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="box">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+    </div>
+    <script>
+        var box = document.getElementById('box');
+        console.log(box.innerText); // 获取内部文本
+        console.log(box.textContent); // 获取内部文本
+        // 谷歌、新版的FF、IE两个都支持
+        // 旧版的FF只支持textContent
+        // 旧版的IE只支持innerText
+    </script>
+</body>
+</html>

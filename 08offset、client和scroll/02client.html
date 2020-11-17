@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 50px;
+            border: 30px solid yellow;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        // client
+        var box = document.querySelector('.box')
+        // 边框的宽度
+        console.log(box.clientLeft);
+        console.log(box.clientTop);
+        // 元素大小 + padding
+        // 获取大小 包括padding 不包括边框
+        console.log(box.clientWidth);
+        console.log(box.clientHeight);
+
+    </script>
+</body>
+</html>

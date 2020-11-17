@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box" age="18" perSonId="1"> 张三</div>
+    <script>
+        var box = document.getElementById('box')
+        // 自有属性
+        console.log(box.id);
+        // 自定义属性
+        console.log(box.age);
+        // 获取自定义属性的值
+        console.log(box.getAttribute('age'));
+        console.log(box.getAttribute('perSonId'));
+
+        // 设置自定义属性
+        box.setAttribute('sex','male')
+        // 移除属性
+        box.removeAttribute('id')
+        box.removeAttribute('age')
+    </script>
+</body>
+</html>

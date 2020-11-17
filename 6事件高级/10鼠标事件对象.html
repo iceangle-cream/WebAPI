@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 3000px;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 鼠标事件对象MouseEvent
+        document.addEventListener('click', function(e) {
+            console.log(e);
+            // clientX clientY返回的是鼠标在可视窗口的距离
+            console.log(e.clientX);
+            console.log(e.clientY);
+             // page返回的是鼠标在页面文档的距离 兼容性问题
+            console.log(e.pageX);
+            console.log(e.pageY);
+        })
+    </script>
+</body>
+</html>

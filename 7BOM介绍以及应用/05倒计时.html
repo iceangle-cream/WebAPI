@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin: 100px auto;
+            text-align: center;
+        }
+        .time-item{
+            margin: 100px auto;
+            text-align: center;
+        }
+        span {
+            background-color: orange;
+            margin: 0px 5px;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: hoff voff blur orange;
+        }
+        .time-item .day,.time-item .day span {
+            background-color: white;
+            color: orange;
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">距离光棍节，还有</h1>
+    <div class="time-item">
+        <span class="day"><span id="day">00</span>天</span>
+        <span><span id="hour">00</span>时</span>
+        <span><span id="minute">00</span>分</span>
+        <span><span id="second">00</span>秒</span>
+    </div>
+    <script>
+        // 目标事件
+        var day = document.getElementById('day');
+        var hour = document.getElementById('hour');
+        var minute = document.getElementById('minute');
+        var second = document.getElementById('second');
+        var endDate = new Date('2020-11-11 00:00:00')
+        setInterval(countDown, 1000);
+        countDown()
+        function countDown() {
+            // 计算时间差
+            var intreval = getInterval(endDate)
+            day.innerText = intreval.day;
+            hour.innerText = intreval.hour;
+            minute.innerText = intreval.minute;
+            second.innerText = intreval.second;
+        }
+        function getInterval(time) {
+            var nowTime =+ new Date(); // 返回的是当前时间总的毫秒数
+            var inputTime =+ new Date(time); // 返回的是用户输入时间的总毫秒数
+            var times = (inputTime - nowTime)/1000; // times就是剩余时间总的毫秒数
+            var d = parseInt(times / 60 / 60 /24); // 天
+            d = d < 10? '0' + d : d
+            var h = parseInt(times / 60 / 60 %24); // 时
+            h = h < 10? '0' + h : h
+            var m = parseInt(times / 60 % 60); // 分
+            m = m < 10? '0' + m : m
+            var s = parseInt(times % 60); // 当前的秒数
+            s = s < 10? '0' + s : s
+            return {
+                day:d,
+                hour:h,
+                minute:m,
+                second:s
+            };
+        }
+        // console.log(countDown('2020-11-11 00:00:00'));
+    </script>
+</body>
+</html>

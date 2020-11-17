@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="text"> <br>
+    <input type="button" id="btn" value="获取文本框的值">
+    <script>
+        // 1. 当页面加载完毕，给所有的文本框赋值
+        var inputs = document.getElementsByTagName('input');
+        for (var i = 0; i < inputs.length; i++){
+            var input = inputs[i];
+            // 根据type属性 判断是否是文本框
+            if (input.type == 'text') {
+                input.value = i;
+            }
+        }
+        var btn = document.getElementById('btn')
+        // 2. 当点击按钮的时候，获取所有文本框的值，并使用 | 分割输出
+        btn.onclick = function() {
+            // var s = ''
+            var arr = [];
+            for (var i = 0; i < inputs.length; i++) {
+                var input = inputs[i];
+                // 根据type属性 判断是否是文本框
+                if (input.type == 'text') {
+                //    s += input.value + '|';
+                    arr.push(input.value)
+                }
+            }
+            // 把最后一个竖线去掉
+            // s = s.substr(0,s.length-1)
+            // console.log(s);
+            console.log(arr.join('|')); // 将数组转换为字符串
+        }
+    </script>
+</body>
+</html>

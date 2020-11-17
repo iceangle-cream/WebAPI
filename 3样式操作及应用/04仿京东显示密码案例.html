@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box,.box1 {
+            width: 400px;
+            border-bottom: 1px solid #cccccc;
+            margin: 10px auto;
+            
+        }
+        input {
+            width: 370px;
+            height: 30px;
+            border: 0;
+            outline: none ;
+        }
+        .box input  {
+            color: #cccccc ;
+        }
+        .box1 {
+            position: relative;
+        }
+        .box1 img {
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            width: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <input type="text" value="用户名/账号/手机号" id="userName">
+    </div>
+    <div class="box1">
+        <label for="">
+            <img src="images/close.png" alt="" id="eye">
+        </label>
+        <input type="password" id="Psw">
+    </div>
+    <script>
+        var userName = document.getElementById('userName');
+        userName.onfocus = function(){
+            this.value = '';
+        }
+        // userName.onblur = function() {
+        //     this.value = '用户名/账号/手机号';
+        // }
+        // 核心算法：点击眼睛按钮，把密码框改为文本框就可以看见密码
+        // 一个按钮两个状态，点击一次，切换为文本框，继续点击一个切换为密码框
+        // 算法：利用一个flag变量，来判断flag的值，如果是1就切换为文本框，flag设置为0就切换为密码框
+        // 1 获取元素
+        // var box1 = document.getElementsByClassName('box1')
+        var eye = document.getElementById('eye')
+        var Psw = document.getElementById('Psw')
+        var flag = 0;
+        // 2 注册事件
+        eye.onclick = function() {
+            // Psw.type = 'text';
+            // this.src = 'images/open.png'
+            if (flag == 0){
+                Psw.type = 'password';
+                this.src = 'images/close.png'
+                flag = 1;
+            }else {
+                Psw.type = 'text';
+                this.src = 'images/open.png'
+                flag = 0;
+            }
+        }
+
+    </script>
+</body>
+</html>

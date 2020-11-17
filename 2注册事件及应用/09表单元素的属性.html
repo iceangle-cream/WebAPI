@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="按钮" id="btn">
+    <input type="button" value="设置文本框的值" id="btn1">
+    <br>
+    <input type="text" id="txt" value="123">
+    <script>
+        // 获取元素
+        var btn = document.getElementById('btn')
+        // 注册事件
+        btn.onclick = function() {
+            var txt = document.getElementById('txt')
+            console.log(txt.value);
+            console.log(txt.type);
+            // 当html中标签得到属性只有一个值时，DOM对应的属性是布尔值
+            console.log(txt.disable);
+            txt.disable = true
+        }
+        var btn1 = document.getElementById('btn1')
+        btn1.onclick = function() {
+            var txt = document.getElementById('txt')
+            // console.log(txt.value);
+            // console.log(txt.type);
+            // 当html中标签得到属性只有一个值时，DOM对应的属性是布尔值
+            console.log(txt.disable);
+            txt.value = 'hello world'
+        }
+    </script>
+</body>
+</html>

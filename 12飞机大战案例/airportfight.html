@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            position: relative;
+            width: 320px;
+            height: 568px;
+            margin:  auto;
+            background: url(img/bg.png) no-repeat;
+            overflow: hidden;
+        }
+        #fly_me {
+            width: 34px;
+            height: 24px;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+    </div>
+</body>
+<script>
+    // 获取元素
+    var body = document.getElementsByTagName('body');
+    // console.log(body);
+    var box = document.getElementById('box');
+    console.log(box.offsetHeight);
+    // console.log(box);
+    // console.log(box.offsetLeft);
+    // 创建战机
+    var flyEle = document.createElement('div');
+    flyEle.id = 'fly_me';
+    flyEle.innerHTML = '<img src = "./img/me.png"/>';
+    document.body.appendChild(flyEle);
+    // 战机跟随鼠标
+    var fly_me = document.getElementById('fly_me');
+    // console.log(fly_me);
+    document.onmousemove = function(e) {
+        flyX = e.pageX - 17;
+        flyY = e.pageY - 12;
+        // console.log(flyX);
+        // console.log(flyY);
+        // console.log(box.offsetLeft);
+        // console.log(box.offsetTop);
+        var xCheck = flyX > box.offsetLeft && flyX < box.offsetLeft + 286;
+        var yCheck = flyY > box.offsetTop && flyY < box.offsetTop + 544;
+        if (xCheck && yCheck) {
+            fly_me.style.left = flyX +  'px';
+            fly_me.style.top = flyY + 'px';
+            fly_me.flag = true;
+        }
+    }
+    // 创建子弹
+    var objB = { // 子弹相关值
+        name : 'bullet',
+        num: 1,
+        arr: [],//['id'|'top'|'left']
+        width: 6,
+        height: 14,
+        path: './img/b.png'
+    };
+    createBullet(objB)
+    // console.log(objB.arr);
+    function createBullet(obj) {
+        setInterval(function() {
+            if(fly_me.flag) {
+                var bullet = document.createElement('div');
+                bullet.id = obj.name + obj.num;
+                var length = obj.arr.length;
+                if (length < 50) {
+                    obj.arr[length] = bullet.id + '|';
+                    obj.num++;
+                    bullet.style.width = obj.width + 'px';
+                    bullet.style.height = obj.height + 'px';
+                    bullet.style.background = 'url(' + obj.path + ')';;
+                    bullet.style.position = 'absolute';
+                    bullet.style.top = parseInt(fly_me.style.top) + 6 + 'px';
+                    obj.arr[length] = obj.arr[length] + bullet.style.top + '|';
+                    bullet.style.left = parseInt(fly_me.style.left) + 14 + 'px';
+                    obj.arr[length] = obj.arr[length] + bullet.style.left;
+                }
+                document.body.appendChild(bullet);
+            }
+        },1000)
+    }
+    // 让子弹运动起来
+    function bulletMove() {
+        var fly_me = document.getElementById('fly_me');
+        if(fly_me.flag) {
+            for(var i = 0; i < objB.arr.length; i++){
+                var newArr = objB.arr[i].split('|');
+                var bulletB = document.getElementById(newArr[0]);
+                newArr[1] = parseInt(newArr[1]) - 1;
+                bulletB.style.top = newArr[1] + 'px';
+                objB.arr[i] = newArr[0] + '|' + newArr[1] + '|' + newArr[2];
+                if (newArr[1]<0){
+                    objB.arr.splice(i,1);
+                    var delFly = document.getElementById(newArr[0]);
+                    delFly.parentNode.removeChild(delFly);
+                }
+            }
+        }
+    }
+    setInterval(function(){
+        bulletMove();
+    },10)
+     // 创建敌机
+     var objF = { // 子弹相关值
+        name : 'foe',
+        num: 1,
+        arr: [],//['id'|'top'|'left']
+        width: 34,
+        height: 24,
+        path: './img/foe.png'
+    };
+    createFoe(objF)
+    function createFoe(obj) {
+        setInterval(function() {
+            if(fly_me.flag) {
+                var foe = document.createElement('foe');
+                foe.id = obj.name + obj.num;
+                var length = obj.arr.length;
+                if (length < 50) {
+                    obj.arr[length] = foe.id + '|';
+                    obj.num++;
+                    foe.style.width = obj.width + 'px';
+                    foe.style.height = obj.height + 'px';
+                    foe.style.background = 'url(' + obj.path + ')';;
+                    foe.style.position = 'absolute';
+                    foe.style.top = 0;
+                    obj.arr[length] = obj.arr[length] + foe.style.top + '|';
+                    var ran = Math.random() * 286;
+                    foe.style.left = box.offsetLeft + ran + 'px';
+                    obj.arr[length] = obj.arr[length] + foe.style.left;
+                }
+                document.body.appendChild(foe);
+            }
+        },1000)
+    }
+    // 让敌机运动起来
+    function foeMove() {
+        var fly_me = document.getElementById('fly_me');
+        if(fly_me.flag) {
+            for(var i = 0; i < objF.arr.length; i++){
+                var newArrF = objF.arr[i].split('|');
+                var foeF = document.getElementById(newArrF[0]);
+                console.log(foeF);
+                newArrF[1] = parseInt(newArrF[1]) - 1;
+                foeF.style.top = -newArrF[1] + 'px';
+                objF.arr[i] = newArrF[0] + '|' + newArrF[1] + '|' + newArrF[2];
+                // console.log(newArrF[1]);
+                if (-newArrF[1]> box.offsetHeight - 24){
+                    objF.arr.splice(i,1);
+                    var delFoe = document.getElementById(newArrF[0]);
+                    delFoe.parentNode.removeChild(delFoe);
+                }
+            }
+        }
+    }
+    setInterval(function(){
+        foeMove();
+    },10)
+    // 子弹和敌机相遇并对消
+    setInterval(function(){
+        bulletMove();
+        foeMove();
+        // console.log(objB.arr);
+        for (var i = 0; i < objF.arr.length; i++) {
+            var ArrF = objF.arr[i].split('|');
+            var bulletF = document.getElementById(ArrF[0]);
+            var xFS = parseInt(ArrF[2]);
+            // console.log(xFS);
+            var xFE = parseInt(ArrF[2]) + 34;
+            // console.log(xFE);
+            var yFS = Math.abs(parseInt(ArrF[1])) ;
+            // console.log(yFS);
+            var yFE = Math.abs(parseInt(ArrF[1])) + 24;
+            for (var j = 0; j < objB.arr.length; j++) {
+                var newArr1 = objB.arr[j].split('|');
+                var eleB = document.getElementById(newArr1[0]);
+                var xB = parseInt(newArr1[2]);
+                // console.log(yB);
+                var yB = parseInt(newArr1[1]);
+                // console.log(yB);
+                var xCheck = xB > xFS && xB < xFE;
+                console.log(xCheck);
+                var yCheck = yB > yFS && yB < yFE;
+                console.log(yCheck);
+
+                if (xCheck && yCheck) {
+                    objF.arr.splice(i, 1);
+                    bulletF.parentNode.removeChild(bulletF);
+                    objB.arr.splice(j, 1);
+                    eleB.parentNode.removeChild(eleB);
+                }
+            }
+        }
+    },30)
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+        }
+        .box {
+            position: relative;
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+        .box1 {
+            position: relative;
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">开始400</button>
+    <button id="btn1">开始800</button>
+    <div class="box"></div>
+    <div class="box1"></div>
+    <script src="animate.js"></script>
+    <script>
+        var btn = document.getElementById('btn');
+        var btn1 = document.getElementById('btn1');
+        var box = document.querySelector('.box');
+        var box1 = document.querySelector('.box1');
+        var timerId = null
+        btn1.onclick = function() {
+            animate(box,800);
+            animate(box1,800);
+        }
+        btn.onclick = function() {
+            animate(box,400);
+            animate(box1,400);
+        }
+        // 封装动画的函数
+    </script>
+</body>
+</html>

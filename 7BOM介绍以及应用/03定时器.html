@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn1">开始</button>
+    <button id="btn2">取消</button>
+    <button id="btn3">start</button>
+    <button id="btn4">cancel</button>
+    <script>
+        // setTimeout() 定时炸弹 隔一段时间执行 并且只会执行一次
+        // setInterval() 闹钟 隔一段时间执行 并且会重复执行
+        var timeId;
+        var time1Id;
+        var btn1 = document.getElementById('btn1');
+        var btn2 = document.getElementById('btn2');
+        btn1.onclick = function() {
+            // setTimeout() 两个参数
+            // 第一个参数 要执行的函数
+            // 第二个参数 间隔的时间 单位是毫秒
+            // 返回值 是一个整数 是定时器的标示
+            timeId = setTimeout(fn,3000)
+            function fn() {
+                alert('爆炸啦')
+            }
+            
+        }
+        btn2.onclick = function() {
+            // 取消定时器的执行
+            clearTimeout(timeId);
+        }
+        var btn3 = document.getElementById('btn3');
+        var btn4 = document.getElementById('btn4');
+        btn3.onclick = function() {
+            // setInterval() 两个参数
+            // 第一个参数 要执行的函数
+            // 第二个参数 间隔的时间 单位是毫秒
+            // 返回值 是一个整数 是定时器的标示
+            time1Id = setInterval(() => {
+                console.log('早上8点');
+            }, 3000);
+            
+        }
+    </script>
+</body>
+</html>

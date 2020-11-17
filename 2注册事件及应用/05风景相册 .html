@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>风景相册</h2>
+    <div id="photos">
+        <a href="img/P_007.jpg" title="花1">
+            <img src="img/P_007.jpg" width="192" height="100" alt="hua1" >
+        </a>
+        <a href="img/P_013.jpg" title="花2">
+            <img src="img/P_013.jpg"  width="192" height="100" alt="hua2" >
+        </a>
+        <a href="img/P_017.jpg" title="花3">
+            <img src="img/P_017.jpg"   width="192" height="100" alt="hua3">
+        </a>
+    </div>
+    <div style="clear: both;"></div>
+    <img id="image" src="img/jiaoben7335.jpg" alt="" height="300">
+    <p id="des">选择一个图片</p>
+    <script>
+        // 1 获取到所有的a标签
+        var photos = document.getElementById('photos');
+        var links = photos.getElementsByTagName('a');
+        console.log(links);
+        // 2 给所有的a标签注册事件
+        for (var i = 0; i < links.length; i++){
+            // 所有的a标签对应的元素
+            var link = links[i];
+            link.onclick = function() {
+                // alert('点击网络')
+                // console.log('dianjil');
+                // 4 切换图片
+                // 获取占位的大图片
+                var image = document.getElementById('image')
+                // 把img标签的src属性 设置为当前点击的a标签的href
+                image.src = this.href;
+                // 5 设置p标签内容
+                var des = document.getElementById('des');
+                // console.log(des);
+                // 设置p标签的内容
+                des.innerText = this.title;
+                // 3 取消点击a标签跳转
+                    return false; 
+            }
+        }
+        
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn">跳转</button>
+    <script>
+        var btn = document.getElementById('btn')
+        btn.onclick = function() {
+            // console.log(location.href);
+            // location.href = 'https://www.baidu.com';
+            // assign()的作用和href一样 让页面跳转到指定地方
+            location.assign('https://www.baidu.com')
+            // 替换掉地址栏中的地址，但是不记录历史
+            location.replace('https://www.baidu.com')
+            // true强制从服务器获取页面 false 如果服务器有缓存的话就从缓存获取页面
+            location.reload(true);
+            // f5刷新页面 可能从缓存中加载 control+f5强制刷新 从服务器获取页面
+            
+        }
+    </script>
+</body>
+</html>

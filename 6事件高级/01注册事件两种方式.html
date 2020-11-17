@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>传统注册事件</button>
+    <button>方法监听注册事件</button>
+    <script>
+        var btns = document.querySelectorAll('button')
+        // 1 传统方式注册事件
+        btns[0].onclick = function() {
+            alert('hi~~~')
+        }
+        // addEventListener(type,listener[, useCapture])
+        // 同一元素 同一事件可以添加多个侦听器(处理程序)
+        btns[1].addEventListener('click',function(){
+            alert('heihei')
+        })
+        btns[1].addEventListener('click',function(){
+            alert('33')
+        })
+    </script>
+</body>
+</html>
